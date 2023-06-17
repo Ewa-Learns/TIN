@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dodaj Paragraf</title>
+</head>
+<body>
+  <h1>Dodaj Paragraf</h1>
+  
+  <input type="text" id="text-input">
+  <button onclick="addParagraph()">Dodaj Paragraf</button>
+  
+  <script>
+    function addParagraph() {
+      const input = document.getElementById('text-input');
+      const text = input.value;
+      
+      const paragraph = document.createElement('p');
+      paragraph.textContent = text;
+      
+      document.body.appendChild(paragraph);
+    }
+  </script>
+</body>
+</html>

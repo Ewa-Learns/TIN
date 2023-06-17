@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Walidacja Formularza</title>
+</head>
+<body>
+  <h1>Walidacja Formularza</h1>
+  
+  <form id="my-form">
+    <label>Wartość numeryczna 1: </label>
+    <input type="number" id="numeric-input-1">
+    
+    <label>Pole tekstowe 1 obowiązkowe: </label>
+    <input type="text" id="text-input-1">
+    
+    <label>Pole tekstowe 2: </label>
+    <input type="text" id="text-input-2">
+    
+    <button type="submit">Wyślij</button>
+  </form>
+  
+  <div id="result"></div>
+  
+  <script>
+    function validateForm(event) {
+      event.preventDefault();
+      
+      const numericInput1 = document.getElementById('numeric-input-1');
+      const textInput1 = document.getElementById('text-input-1');
+      const textInput2 = document.getElementById('text-input-2');
+      
+      const numericValue1 = parseFloat(numericInput1.value);
+      const textValue1 = textInput1.value;
+      const textValue2 = textInput2.value;
+      
+      if (isNaN(numericValue1)) {
+        displayResult('Wartość numeryczna jest nieprawidłowa!', false);
+        return false;
+      }
+      
+      if (textValue1 === '') {
+        displayResult('Pole tekstowe 1 nie może być puste!', false);
+        return false;
+      }
+      
+      displayResult('Walidacja zakończona sukcesem!', true);
+      return true;
+    }
+    
+    function displayResult(message, isSuccess) {
+      const resultDiv = document.getElementById('result');
+      resultDiv.textContent = message;
+      
+      if (isSuccess) {
+        resultDiv.style.color = 'green';
+      } else {
+        resultDiv.style.color = 'red';
+      }
+    }
+    
+    document.getElementById('my-form').addEventListener('submit', validateForm);
+  </script>
+</body>
+</html>
